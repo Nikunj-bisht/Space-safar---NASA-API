@@ -1,10 +1,12 @@
 package com.animesafar.animecontent;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.animesafar.animecontent.ui.dashboard.DashboardFragment;
 import com.animesafar.animecontent.ui.home.HomeFragment;
@@ -85,4 +87,18 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode==200 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            Toast.makeText(this,"Granted ",Toast.LENGTH_SHORT).show();
+
+
+        }
+
+
+    }
 }

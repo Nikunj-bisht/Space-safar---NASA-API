@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.animesafar.animecontent.ui.dashboard.DashboardFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,6 +64,8 @@ private static void imagerequest(Context context,ImageView imageView,String urln
         public void onResponse(Bitmap response) {
 
             imageView.setImageBitmap(response);
+imageView.setDrawingCacheEnabled(true);
+            DashboardFragment.bitmap = imageView.getDrawingCache();
 
 
         }
