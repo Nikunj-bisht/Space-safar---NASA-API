@@ -1,5 +1,6 @@
 package com.animesafar.animecontent;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,7 +22,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.jumptoanother {
 
 
     @Override
@@ -56,6 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void anotheractivity(String program){
+
+        Intent intent = new Intent(this,Showallimages.class);
+           intent.putExtra("prog",program);
+           startActivity(intent);
+
+
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -66,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()){
 
                 case R.id.navigation_home:
-                    fragment = new HomeFragment(MainActivity.this);
+                    fragment = new HomeFragment(MainActivity.this,MainActivity.this);
                 break;
 
                 case R.id.navigation_notifications:

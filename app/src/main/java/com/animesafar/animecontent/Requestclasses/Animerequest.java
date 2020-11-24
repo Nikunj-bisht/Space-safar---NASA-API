@@ -13,12 +13,27 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.animesafar.animecontent.Showallimages;
 import com.animesafar.animecontent.ui.dashboard.DashboardFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Animerequest {
+
+
+
+
+
+public  Helperi helperi;
+
+  public  interface Helperi{
+
+        void sendthejsonreference(JSONObject jsonObject) ;
+
+
+    }
+
 
 
 
@@ -81,6 +96,42 @@ imageView.setDrawingCacheEnabled(true);
              requestQueue.add(imageRequest);
 
 }
+
+
+    public static void programdata(Context context, String url,Helperi helperi){
+
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                try {
+
+helperi.sendthejsonreference(response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context,"Sorry newtwork error ",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
+
 
 
 }
