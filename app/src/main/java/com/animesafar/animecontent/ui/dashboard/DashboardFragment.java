@@ -65,6 +65,7 @@ public class DashboardFragment extends Fragment {
 Button downl = root.findViewById(R.id.download);
         Button set = root.findViewById(R.id.button5);
 
+        Animerequest.picofdayrequest(context,url,imageView,textView);
 
 
 
@@ -154,7 +155,7 @@ dialog.show();
             }
         });
 
-        Animerequest.picofdayrequest(context,url,imageView,textView);
+
 
 
         return root;
