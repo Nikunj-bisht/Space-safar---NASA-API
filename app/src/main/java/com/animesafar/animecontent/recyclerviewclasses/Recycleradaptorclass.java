@@ -3,6 +3,7 @@ package com.animesafar.animecontent.recyclerviewclasses;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class Recycleradaptorclass extends RecyclerView.Adapter<Singleview> {
 holder.textView.setText(datastorages.get(position).getTitl());
 holder.getImageView().setOnClickListener(new View.OnClickListener(){
 
+
     @Override
     public void onClick(View view) {
 
@@ -106,7 +108,6 @@ move.movetodetail(bitmap,datastorages.get(position).getDescrip());
 
           public void run(){
 
-
               RequestQueue requestQueue = Volley.newRequestQueue(context);
               ImageRequest imageRequest = new ImageRequest(this.newurl, new Response.Listener<Bitmap>() {
                   @Override
@@ -116,12 +117,13 @@ move.movetodetail(bitmap,datastorages.get(position).getDescrip());
 
 
                   }
-              }, 0, 0, null, Bitmap.Config.RGB_565, new Response.ErrorListener() {
+              }, 0, 0, null, null, new Response.ErrorListener() {
                   @Override
                   public void onErrorResponse(VolleyError error) {
+                      Toast.makeText(context,newurl,Toast.LENGTH_LONG).show();
 
-                      Toast.makeText(context,"Sorry cant fetch this image ",Toast.LENGTH_SHORT).show();
-
+                     // Toast.makeText(context,"Sorry cant fetch this image ",Toast.LENGTH_SHORT).show();
+                      Log.d("errrr",error.toString());
 
                   }
               });

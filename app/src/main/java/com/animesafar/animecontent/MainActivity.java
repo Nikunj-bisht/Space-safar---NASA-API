@@ -9,6 +9,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.animesafar.animecontent.ui.Eventscate;
 import com.animesafar.animecontent.ui.dashboard.DashboardFragment;
 import com.animesafar.animecontent.ui.home.HomeFragment;
 import com.animesafar.animecontent.ui.notifications.NotificationsFragment;
@@ -80,13 +81,18 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.jump
                 break;
 
                 case R.id.navigation_notifications:
-                    fragment = new NotificationsFragment();
+                    fragment = new NotificationsFragment(MainActivity.this);
                 break;
 
                 case R.id.navigation_dashboard:
 
                     fragment = new DashboardFragment(MainActivity.this);
                     break;
+
+                case R.id.event:
+                    fragment = new Eventscate();
+                    break;
+
             }
 
 
