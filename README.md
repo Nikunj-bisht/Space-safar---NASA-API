@@ -1,5 +1,5 @@
 # Space-safar---NASA-API
-I am building this android app just for productivity but this gonna be awesome you will be getting live images and updates from NASA services along with live weather updates
+I am building this android app just for productivity but this gonna be awesome you will be getting live images and updates from NASA services along with live events like storm,flood etc
 
 
 ![Screenshot_2020-11-28-00-40-53-166_com animesafar animecontent](https://user-images.githubusercontent.com/52692588/100479216-8b87bb00-3113-11eb-95a3-567067ba048a.jpg)
