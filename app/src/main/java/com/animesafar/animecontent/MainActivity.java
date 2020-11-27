@@ -23,7 +23,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.jumptoanother {
+public class MainActivity extends AppCompatActivity implements HomeFragment.jumptoanother , Eventscate.gotomap {
 
 
     @Override
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.jump
                     break;
 
                 case R.id.event:
-                    fragment = new Eventscate();
+                    fragment = new Eventscate(MainActivity.this);
                     break;
 
             }
@@ -115,6 +115,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.jump
 
         }
 
+
+    }
+
+    @Override
+    public void mapact() {
+
+        Intent intent = new Intent(this,MapsActivity.class);
+        startActivity(intent);
 
     }
 }

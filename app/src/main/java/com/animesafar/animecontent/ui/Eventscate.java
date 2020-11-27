@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.animesafar.animecontent.Datastorageclasses.Coordinateclass;
 import com.animesafar.animecontent.R;
 import com.animesafar.animecontent.Requestclasses.Animerequest;
 
@@ -28,11 +29,28 @@ public class Eventscate extends Fragment implements Animerequest.Helperi , View.
     ImageView imageView;
     ImageView imageView1;
     Button button;
+    View view;
+gotomap go;
+
+    public  interface gotomap{
+
+        void mapact();
+
+    }
+
+
+
+    public Eventscate(gotomap g){
+        this.go = g;
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-       View view = inflater.inflate(R.layout.eventscategories,container,false);
+
+        view = inflater.inflate(R.layout.eventscategories,container,false);
 
 
          imageView = view.findViewById(R.id.imageView5);
@@ -42,6 +60,9 @@ button.setOnClickListener(this);
 
         imageView.setX(2000);
         imageView1.setX(-2000);
+        imageView.animate().translationXBy(-2000).setDuration(2000);
+
+        imageView1.animate().translationXBy(2000).setDuration(2000);
 
 
         String url = "https://eonet.sci.gsfc.nasa.gov/api/v2.1/events";
@@ -56,13 +77,31 @@ button.setOnClickListener(this);
     @Override
     public void sendthejsonreference(JSONObject jsonObject) {
 
-
+button.setVisibility(View.VISIBLE);
+view.findViewById(R.id.progressBar2).setVisibility(View.INVISIBLE);
         try{
+
 
               JSONArray jsonArray = jsonObject.getJSONArray("events");
 
-              coor = jsonArray.getJSONObject(0).getJSONArray("geometries").getJSONObject(0).getJSONArray("coordinates");
+              for(int i=0;i<jsonArray.length()/2;i++){
 
+
+
+                  String title = jsonArray.getJSONObject(i).getJSONArray("categories").getJSONObject(0).getString("title");
+
+                  JSONArray jsonArray1= jsonArray.getJSONObject(i).getJSONArray("geometries");
+
+                  if(!Coordinateclass.map.containsKey(title)){
+                      Coordinateclass.map.put(title , new JSONArray());
+                      Coordinateclass.map.put(title,jsonArray1);
+
+                  }
+
+
+
+
+              }
 
 
         }catch (Exception e){
@@ -77,10 +116,9 @@ button.setOnClickListener(this);
     @Override
     public void onClick( View view) {
 
-        Toast.makeText(getContext(),coor.toString(),Toast.LENGTH_LONG).show();
-        imageView.animate().translationXBy(-2000).setDuration(2000);
+//        Toast.makeText(getContext(),coor.toString(),Toast.LENGTH_LONG).show();
 
-        imageView1.animate().translationXBy(2000).setDuration(2000);
+go.mapact();
 
     }
 }
